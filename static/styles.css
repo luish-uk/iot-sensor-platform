@@ -1,4 +1,21 @@
 h3 {
     font-family: sans-serif;
+}
+
+table {
+    background-color: black;
+    width: 700px;
+}
+
+th {
+    width: 100
+}
+
+tr {
+    background-color: grey;
     text-align: center;
+}
+
+tr:last-of-type{
+    background-color: silver;
 }

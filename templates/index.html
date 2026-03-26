@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
-    <h3>Luis' room is currently {{readings}}</h3>
+    <h3>Luis' room is currently:</h3>
+    <table>
+        <tr>
+            <th>Light</th>
+            <th>Humidity</th>
+            <th>Temperature</th>
+        </tr>
+        <tr>
+            <td>
+                {{readings[0][2]}}
+            </td>
+            <td>
+                {{readings[1][2]}}
+            </td>
+            <td>
+                {{readings[2][2]}}
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
