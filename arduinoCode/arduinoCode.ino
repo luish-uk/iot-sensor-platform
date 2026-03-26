@@ -1,15 +1,11 @@
-#include <dht_nonblocking.h>
-#define DHT_SENSOR_TYPE DHT_TYPE_11
+#include <dht_nonblocking.h> //Library for dht_11 from ELEGOO
+#define DHT_SENSOR_TYPE DHT_TYPE_11 
 
-int maxVal = 300;
-//The min is 0
-
-static const int DHT_SENSOR_PIN = 2;
+static const int DHT_SENSOR_PIN = 2; // Assign's pin 2 to the temperature sensor 
 DHT_nonblocking dht_sensor(DHT_SENSOR_PIN, DHT_SENSOR_TYPE);
 
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(9600); //Initialize serial monitor 
 }
 
 //Update temperature every 3 seconds 
@@ -30,11 +26,12 @@ static bool measure_environment(float *temperature, float *humidity)
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  //Initilize variables
   float temperature; 
   float humidity; 
+  //Collect pin data for photoresister (light sensor)
   int value = analogRead(A0);
-  //Print to serial
+  //Print to serial from the photoresistor and DHT11 in JSON format
   if (measure_environment(&temperature, &humidity))
   {
     Serial.print("{");

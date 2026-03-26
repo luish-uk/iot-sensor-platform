@@ -11,6 +11,15 @@ init_db()
 
 @app.route("/")
 def home():
+    """
+    Default home page functionality
+    Actions:
+        - Reads the Arduino Data from the serial monitor that's JSON fomatted 
+        - Seperates each of the values to their respective variables 
+        - Log's values to database 
+        - Collect's the last 3 reading's of those values form the database 
+        - Prints it to the home page 
+    """
     data = ser.readline().decode().strip()
     data_dict = json.loads(data)
     light = data_dict["Light"]
@@ -22,24 +31,6 @@ def home():
 
     readings = limit_readings()
 
-#OUTPUT: [(384, 'light', 137.0, '2026-03-26 12:22:29'), (383, 'humidity', 39.0, '2026-03-26 12:22:29'), (382, 'temperature', 22.0, '2026-03-26 12:22:29')]
-
     return render_template('index.html', readings=readings)
 
 app.run(host="0.0.0.0", port=5000)
-# class Data:
-#     def insert(self, column):
-#         line = "INSERT INTO {column} VALUES({self.lightData})"
-#         return line
-#     def query(self, column=None, table=None):
-#         if table == None:
-#             table = "sqlite_master"
-#         if column == None:
-#             column = "*"
-#         else:
-#             columns = ""
-#             l = len(column)
-#             for i in range(l-2):
-#                 columns += f'{column[i]}, '
-#             columns += f'{column[-1]}'
-#         line = "SELECT {column}"
